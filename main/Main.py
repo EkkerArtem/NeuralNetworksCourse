@@ -1,4 +1,5 @@
 import random
+import urllib
 from urllib.request import urlopen
 
 import numpy as np
@@ -42,17 +43,30 @@ import numpy as np
 # print(str(max(errsum(abserr), errsum(sqerr))))
 
 
-
 # Оценка коэфициетов линейной регрессии для
 # ⎛⎝D  |  V
 #   10  | 60
 #    7  | 50
 #   12⎠ | 75
 # где D- тормозной путь автомобиля, V- скорость автомобил, результаты - b0 и b1 (b - бета с крышечкой)
-X = np.array([[1, 60], [1, 50], [1, 75]])
-y = np.array([[10], [7], [12]])
+# X = np.array([[1, 60], [1, 50], [1, 75]])
+# y = np.array([[10], [7], [12]])
+# step1 = X.T.dot(X)
+# step2 = np.linalg.inv(step1)
+# step3 = step2.dot(X.T)
+# b = step3.dot(y)
+# print(b)
+
+
+f = urllib.request.urlopen("https://stepic.org/media/attachments/lesson/16462/boston_houses.csv")  # open file from URL
+data = np.loadtxt(f, delimiter=',', skiprows=1)  # load data to work with
+
+ones = np.ones_like(data[:, :1])
+X = np.hstack((ones, data[:, 1:]))
+y = data[:, :1]
 step1 = X.T.dot(X)
 step2 = np.linalg.inv(step1)
 step3 = step2.dot(X.T)
 b = step3.dot(y)
-print(b)
+for i in b:
+    print(float(i), end=" ")
