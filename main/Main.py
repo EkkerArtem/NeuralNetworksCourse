@@ -1,4 +1,5 @@
 import random
+from urllib.request import urlopen
 
 import numpy as np
 
@@ -27,3 +28,6 @@ import numpy as np
 # a = w.dot([[1, 2, 3], [1, 2, 3], [1, 2, 3]])
 # print(a)
 
+f = urlopen("https://stepic.org/media/attachments/lesson/16462/boston_houses.csv")
+sbux = np.loadtxt(f, skiprows=1, delimiter=",", unpack=True)
+print(sbux.mean(axis=1))
