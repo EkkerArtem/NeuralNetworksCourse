@@ -58,15 +58,50 @@ import numpy as np
 # print(b)
 
 
-f = urllib.request.urlopen("https://stepic.org/media/attachments/lesson/16462/boston_houses.csv")  # open file from URL
-data = np.loadtxt(f, delimiter=',', skiprows=1)  # load data to work with
+# f = urllib.request.urlopen("https://stepic.org/media/attachments/lesson/16462/boston_houses.csv")  # open file from URL
+# data = np.loadtxt(f, delimiter=',', skiprows=1)  # load data to work with
+#
+# ones = np.ones_like(data[:, :1])
+# X = np.hstack((ones, data[:, 1:]))
+# y = data[:, :1]
+# step1 = X.T.dot(X)
+# step2 = np.linalg.inv(step1)
+# step3 = step2.dot(X.T)
+# b = step3.dot(y)
+# for i in b:
+#     print(float(i), end=" ")
 
-ones = np.ones_like(data[:, :1])
-X = np.hstack((ones, data[:, 1:]))
-y = data[:, :1]
-step1 = X.T.dot(X)
-step2 = np.linalg.inv(step1)
-step3 = step2.dot(X.T)
-b = step3.dot(y)
-for i in b:
-    print(float(i), end=" ")
+
+
+#Перцептрон
+# Задача - https://stepik.org/lesson/21775/step/3?unit=5191
+# X = np.array([[1, 1, 0.3, 1],
+#               [1, 0.4, 0.5, 1],
+#               [1, 0.7, 0.8, 0]])  # массив значений
+#
+# w = np.array([0, 0, 0])  # массив весов
+#
+# Y = np.array([1, 1, 0])  # реальные ответы
+# X = np.array([[1, 1, 0.3, 0],
+#               [1, 0.4, 0.5, 0],
+#               [1, 0.7, 0.8, 0]])  # массив значений
+# X[:, 3] = Y.transpose()  # подтягиваем ответы в массив значений
+# w = np.array([0, 0, 0])  # массив весов
+#
+#
+# def Predict(X):
+#     E = X.dot(w.transpose())  # сумматор
+#     p = 1 if E > 0 else 0  # активатор
+#     return p
+#
+#
+# perfect = False
+# while perfect == False:
+#     perfect = True
+#     for ex in X:
+#         сравниваем предсказание с реальным ответом
+        # if Predict(ex[0:3]) != ex[3]:
+        #     perfect = False
+        #     если ответ не совпадает, правим веса
+            # w = w + (ex[3] - Predict(ex[0:3])) * ex[0:3]
+# print(w)
